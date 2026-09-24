@@ -4,6 +4,8 @@ public class Main {
     public static void main(String[] args){
         Scanner scan = new Scanner(System.in);
         Library library = new Library();
+        DataBaseConnection.getConnection();
+        bookDBA bookDBA = new bookDBA();
         boolean running = true;
 
         while (running) {
@@ -14,7 +16,9 @@ public class Main {
             System.out.println("4. Display All Books");
             System.out.println("5. Borrow Book");
             System.out.println("6. Return Book");
-            System.out.println("7. Exit");
+            System.out.println("7. Add Member");
+            System.out.println("8. Search Member");
+            System.out.println("9. Exit");
             System.out.print("Choose an option: ");
 
             int choice = scan.nextInt();
@@ -24,32 +28,32 @@ public class Main {
                 case 1:
                     System.out.print("Enter Book ID: ");
                     int id = scan.nextInt();
-                    scan.nextLine(); // consume newline
+                    scan.nextLine();
                     System.out.print("Enter Title: ");
                     String title = scan.nextLine();
                     System.out.print("Enter Author: ");
                     String author = scan.nextLine();
                     Book newBook = new Book(id, title, author, true);
                     library.addBook(newBook);
+                    bookDBA .addBook(newBook);
                     System.out.println("Book added successfully!");
                     break;
 
                 case 2:
-                    // Remove a book
                     System.out.print("Enter Title to remove: ");
                     String removeTitle = scan.nextLine();
                     System.out.println(library.removeBook(removeTitle));
                     break;
 
                 case 3:
-                    // Search for a book
                     System.out.print("Enter Title to search: ");
                     String searchTitle = scan.nextLine();
-                    String result = library.searchBook(searchTitle);
-                    if (result.equals("Book not found") || result.equals("There are no books.")) {
-                        System.out.println(result);
+                    Book result = library.searchBook(searchTitle);
+                    if (result == null) {
+                        System.out.println("Book not found. ");
                     } else {
-                        System.out.println("Book found: " + result);
+                        System.out.println("Book found. ");
+                        System.out.println(result);
                     }
                     break;
 
@@ -85,13 +89,40 @@ public class Main {
                     }
                     break;
 
+
                 case 7:
+                    System.out.println("Enter MemberID: ");
+                    int memberID = scan.nextInt();
+                    scan.nextLine();
+                    System.out.println("Enter Member name: ");
+                    String name = scan.nextLine();
+                    Member newMember = new Member(name, memberID);
+                    library.addMember(newMember);
+                    System.out.println("Added new member successfully!");
+                    break;
+
+                case 8:
+                    System.out.println("Enter memberID to search: ");
+                    int searchMemberID = scan.nextInt();
+                    scan.nextLine();
+                    Member memberResult = library.searchMember(searchMemberID);
+                    if (memberResult == null) {
+                        System.out.println("member not found. ");
+                    } else {
+                        System.out.println("member found. ");
+                        System.out.println(memberResult);
+                    }
+                    break;
+
+                case 9:
                     running = false;
                     System.out.println("Exiting Library Management System. Goodbye!");
                     break;
 
+
                 default:
                     System.out.println("Invalid choice. Try again.");
+
             }
         }
 

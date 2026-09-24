@@ -22,4 +22,13 @@ public class Member {
     public void setMemberID(int memberID) {
         this.memberID = memberID;
     }
+
+    @Override
+    public String toString() {
+        return "MemberID: " + memberID +
+                "\nName: " + name;
+    }
 }
+
+
+
