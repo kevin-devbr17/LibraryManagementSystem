@@ -1,8 +1,10 @@
+package com.library;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Library {
     ArrayList<Book> books = new ArrayList<>();
+    private ArrayList<Member> members = new ArrayList<>();
 
     public Book addBook(Book book){
         books.add(book);
@@ -43,5 +45,21 @@ public class Library {
             System.out.println("Book availability: " + book.isAvailable());
         }
     }
+
+    public void addMember(Member member){
+        members.add(member);
+    }
+
+    public Member searchMember(int memberID){
+        for(Member member: members){
+            if(member.getMemberID() == memberID){
+                return member;
+            }
+        }
+
+        return null;
+    }
+
+
 
 }

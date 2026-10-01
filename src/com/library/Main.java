@@ -1,3 +1,5 @@
+package com.library;
+
 import java.util.Scanner;
 
 public class Main {
@@ -9,15 +11,15 @@ public class Main {
         boolean running = true;
 
         while (running) {
-            System.out.println("\n=== Library Management System ===");
+            System.out.println("\n=== com.library.Library Management System ===");
             System.out.println("1. Add Book");
             System.out.println("2. Remove Book");
             System.out.println("3. Search Book");
             System.out.println("4. Display All Books");
             System.out.println("5. Borrow Book");
             System.out.println("6. Return Book");
-            System.out.println("7. Add Member");
-            System.out.println("8. Search Member");
+            System.out.println("7. Add com.library.Member");
+            System.out.println("8. Search com.library.Member");
             System.out.println("9. Exit");
             System.out.print("Choose an option: ");
 
@@ -94,7 +96,7 @@ public class Main {
                     System.out.println("Enter MemberID: ");
                     int memberID = scan.nextInt();
                     scan.nextLine();
-                    System.out.println("Enter Member name: ");
+                    System.out.println("Enter com.library.Member name: ");
                     String name = scan.nextLine();
                     Member newMember = new Member(name, memberID);
                     library.addMember(newMember);
@@ -116,7 +118,7 @@ public class Main {
 
                 case 9:
                     running = false;
-                    System.out.println("Exiting Library Management System. Goodbye!");
+                    System.out.println("Exiting com.library.Library Management System. Goodbye!");
                     break;
 
 
